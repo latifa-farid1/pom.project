@@ -5,22 +5,16 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage {
     WebDriver driver;
-    By BasicAuthlink=By.xpath("//a[@href='/basic_auth']");
-    By DragDropLink=By.xpath("//a[@href='/drag_and_drop']");
-    By DropDowenLink=By.xpath("//a[@href='/dropdown']");
+    By pageLink;
 
     public HomePage(WebDriver driver){
         this.driver=driver;
 
     }
-    public void OpenBasicAuthPage(){
-        driver.findElement(BasicAuthlink).click();
+    public void OpenAnyPageLink(String value){
+        pageLink=By.xpath("//a[@href="+value+"]");
+        driver.findElement(pageLink).click();
+
     }
 
-    public void OpenDragDrop(){
-        driver.findElement(DragDropLink).click();
-    }
-    public void OpenDropDowen(){
-        driver.findElement(DropDowenLink).click();
-    }
 }

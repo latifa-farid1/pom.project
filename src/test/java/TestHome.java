@@ -1,7 +1,4 @@
-import Pages.BasicAuthPage;
-import Pages.DragDropPage;
-import Pages.DropDowenPage;
-import Pages.HomePage;
+import Pages.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -23,6 +20,8 @@ public class TestHome {
         BasicAuthPage basicAuthPage;
         DragDropPage dragDropPage;
         DropDowenPage dropDowenPage;
+        TablesPage tablesPage;
+        AiFrame aiFrame;
         String Actual;
 
 
@@ -31,7 +30,7 @@ public class TestHome {
         public void BeforeMethod() {
             driver=new ChromeDriver();
             wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(1000))
+                    .withTimeout(Duration.ofSeconds(3))
                     .pollingEvery(Duration.ofMillis(3000))
                     .ignoring(NotFoundException.class)
                     .ignoring(ElementNotInteractableException.class)
@@ -45,6 +44,8 @@ public class TestHome {
             basicAuthPage=new BasicAuthPage(driver);
             dragDropPage=new DragDropPage(driver);
             dropDowenPage=new DropDowenPage(driver);
+             tablesPage=new TablesPage(driver);
+             aiFrame=new AiFrame(driver);
 
         }
 
@@ -57,7 +58,7 @@ public class TestHome {
         public void TestAuthPopup(){
 
             wait.until(d -> {
-                homepage.OpenBasicAuthPage();
+                homepage.OpenAnyPageLink("'/basic_auth'");
                 basicAuthPage.AuthPopup(username,password);
                 return true;
             });
@@ -66,7 +67,7 @@ public class TestHome {
         @Test
         public void TestDragDroup(){
             wait.until(d->{
-                homepage.OpenDragDrop();
+                homepage.OpenAnyPageLink("'/drag_and_drop'");
                 Assert.assertEquals(dragDropPage.DragDropPhoto(Actual),"A");
                 return true;
 
@@ -76,15 +77,26 @@ public class TestHome {
         @Test
     public void TestDropdowenList(){
         wait.until(d->{
-            homepage.OpenDropDowen();
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            homepage.OpenAnyPageLink("'/dropdown'");
             Assert.assertEquals(dropDowenPage.OpenDropDowen(Actual),"Option 1");
             return true;
         });
 
+        }
+        @Test
+    public void TestTableData(){
+        wait.until(d->{
+            homepage.OpenAnyPageLink("'/tables'");
+          Assert.assertEquals(tablesPage.SelectTableRowe(Actual),"fbach@yahoo.com1")  ;
+       return true;
+        });
+        }
+        @Test
+    public void TestAiFram(){
+        wait.until(d->{
+            homepage.OpenAnyPageLink("'/tinymce'");
+            //aiFrame.closeIfram();
+         return true;
+        });
         }
 }
