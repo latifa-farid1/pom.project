@@ -20,8 +20,8 @@ public class TestHome {
         BasicAuthPage basicAuthPage;
         DragDropPage dragDropPage;
         DropDowenPage dropDowenPage;
-        TablesPage tablesPage;
-        AiFrame aiFrame;
+       TablesPage tablesPage;
+        //AiFrame aiFrame;
         String Actual;
 
 
@@ -44,8 +44,8 @@ public class TestHome {
             basicAuthPage=new BasicAuthPage(driver);
             dragDropPage=new DragDropPage(driver);
             dropDowenPage=new DropDowenPage(driver);
-             tablesPage=new TablesPage(driver);
-             aiFrame=new AiFrame(driver);
+            tablesPage=new TablesPage(driver);
+             //aiFrame=new AiFrame(driver);
 
         }
 
@@ -87,7 +87,7 @@ public class TestHome {
     public void TestTableData(){
         wait.until(d->{
             homepage.OpenAnyPageLink("'/tables'");
-          Assert.assertEquals(tablesPage.SelectTableRowe(Actual),"fbach@yahoo.com1")  ;
+          Assert.assertEquals(tablesPage.SelectTableRowe(Actual),"jdoe@hotmail.com")  ;
        return true;
         });
         }
