@@ -107,9 +107,10 @@ public void FourthResult(){
     public void Dragdropufile(){
         Wait.until(d->{
             Assert.assertEquals(dragDropFilePage.DragDropmethod(Actual),"Dropped!");  ;
-return true;
-        });
-    }
+             return true;
+                      });
+                               }
+
 
 }
 

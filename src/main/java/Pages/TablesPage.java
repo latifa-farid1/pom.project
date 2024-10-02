@@ -11,6 +11,5 @@ public class TablesPage {
     }
     public String SelectTableRowe(String value){
        return driver.findElement(TableID).getText();
-
     }
 }
